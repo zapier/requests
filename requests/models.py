@@ -544,10 +544,6 @@ class Request(object):
         if (content_type) and (not 'content-type' in self.headers):
             self.headers['Content-Type'] = content_type
 
-        # Add content-length if missing
-        if (body) and isinstance(body, builtin_str) and (not 'content-length' in self.headers):
-            self.headers['Content-Length'] = len(body)
-
         _p = urlparse(url)
         no_proxy = filter(lambda x: x.strip(), self.proxies.get('no', '').split(','))
         proxy = self.proxies.get(_p.scheme)
